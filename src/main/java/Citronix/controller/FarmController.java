@@ -1,14 +1,19 @@
 package Citronix.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import Citronix.model.Farm;
+import Citronix.service.FarmServiceInterface;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/farm")
+@RequiredArgsConstructor
 public class FarmController {
-    @GetMapping
-    public String test(){
-        return "hello";
+
+    private final FarmServiceInterface farmService;
+    @PostMapping
+    public ResponseEntity<Farm> createFarm(@RequestBody Farm farm){
+
     }
 }
