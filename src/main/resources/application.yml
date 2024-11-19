@@ -3,7 +3,7 @@ spring:
     name: Citronix
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/Citronix
+    url: jdbc:postgresql://localhost:5432/citronix
     username: postgres
     password: root
   jpa:
