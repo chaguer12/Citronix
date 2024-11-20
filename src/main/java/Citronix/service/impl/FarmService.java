@@ -42,11 +42,19 @@ public class FarmService implements FarmServiceInterface {
 
     @Override
     public boolean deleteFarm(UUID id) {
-        if(!farmRepo.existsById(id)){
+        if(farmRepo.existsById(id)){
+            farmRepo.deleteById(id);
+            return true;
+        }else{
             throw new EntityNotFoundException("farm not found with id" + id);
         }
-        farmRepo.deleteById(id);
-        return true;
 
+    }
+
+    @Override
+    public FarmResponseDTO update(FarmRequestDTO farm) {
+        Farm frm = Farm.builder().name(farm.name()).location(farm.location()).superficie(farm.superficie()).build();
+        farmRepo.save(frm);
+        return farmMapper.toDTO(frm);
     }
 }

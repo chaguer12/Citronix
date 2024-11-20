@@ -24,7 +24,7 @@ public class GlobalExceptionHandler {
     }
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<ErrorMessage> handleGenralException(EntityNotFoundException excep){
-        ErrorMessage errorMessage = new ErrorMessage(HttpStatus.INTERNAL_SERVER_ERROR.value(),"Record not found: " + excep.getMessage());
-        return new ResponseEntity<>(errorMessage,HttpStatus.INTERNAL_SERVER_ERROR);
+        ErrorMessage errorMessage = new ErrorMessage(HttpStatus.BAD_REQUEST.value(),"Record not found: " + excep.getMessage());
+        return new ResponseEntity<>(errorMessage,HttpStatus.BAD_REQUEST);
     }
 }

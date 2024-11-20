@@ -11,4 +11,5 @@ public interface FarmServiceInterface {
     FarmResponseDTO save(FarmRequestDTO farm);
     List<FarmResponseDTO> getFarms();
     boolean deleteFarm(UUID id);
+    FarmResponseDTO update(FarmRequestDTO farm);
 }
