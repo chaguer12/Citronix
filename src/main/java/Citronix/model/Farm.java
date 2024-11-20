@@ -1,6 +1,9 @@
 package Citronix.model;
 
+import jakarta.annotation.Nonnull;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -10,9 +13,15 @@ public class Farm {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+    @NotNull
+    @Size(min=10,max = 100)
     private String name;
+    @NotNull
     private LocalDateTime created_at;
+    @NotNull
+    @Size(max = 255)
     private String location;
+    @NotNull
     private long superficie;
 
     public Farm(){
