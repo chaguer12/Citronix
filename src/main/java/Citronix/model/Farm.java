@@ -65,4 +65,5 @@ public class Farm {
     public void setSuperficie(long superficie) {
         this.superficie = superficie;
     }
+
 }
