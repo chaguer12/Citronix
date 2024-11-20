@@ -42,6 +42,9 @@ public class FarmService implements FarmServiceInterface {
 
     @Override
     public boolean deleteFarm(UUID id) {
+        if(!farmRepo.existsById(id)){
+            throw new EntityNotFoundException("farm not found with id" + id);
+        }
         farmRepo.deleteById(id);
         return true;
 

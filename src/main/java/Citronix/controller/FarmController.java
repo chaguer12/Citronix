@@ -38,11 +38,8 @@ public class FarmController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteFarm(@PathVariable String id){
-        if(farmService.deleteFarm(UUID.fromString(id))){
-            return ResponseEntity.status(HttpStatus.OK).body("deleted successfully!");
-        }else{
-            throw new EntityNotFoundException("farm not found with id" + UUID.fromString(id));
-        }
+        farmService.deleteFarm(UUID.fromString(id));
+        return ResponseEntity.status(HttpStatus.OK).body("deleted successfully!");
     }
 
 
