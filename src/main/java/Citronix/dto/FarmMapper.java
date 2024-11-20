@@ -6,10 +6,7 @@ import Citronix.dto.records.FarmResponseDTO;
 import Citronix.model.Farm;
 import org.mapstruct.Mapper;
 
-@Mapper(componentModel = "spring")
+@Mapper(config = GenericMapper.class)
 public interface FarmMapper extends GenericMapper<Farm, FarmRequestDTO, FarmResponseDTO> {
-
-
-
 
 }

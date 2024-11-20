@@ -3,14 +3,18 @@ package Citronix.service.impl;
 import Citronix.dto.FarmMapper;
 import Citronix.dto.records.FarmRequestDTO;
 import Citronix.dto.records.FarmResponseDTO;
+import Citronix.exception.EntityNotFoundException;
 import Citronix.model.Farm;
 import Citronix.repository.FarmRepository;
 import Citronix.service.FarmServiceInterface;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -31,8 +35,15 @@ public class FarmService implements FarmServiceInterface {
     }
 
     @Override
-    public List<Farm> getFarms(){
-        return farmRepo.findAll();
+    public List<FarmResponseDTO> getFarms(){
+        List<Farm> farms = farmRepo.findAll();
+        return farms.stream().map(farmMapper::toDTO).toList();
     }
 
+    @Override
+    public boolean deleteFarm(UUID id) {
+        farmRepo.deleteById(id);
+        return true;
+
+    }
 }

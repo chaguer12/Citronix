@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 public record FarmResponseDTO(
+        @NotNull
         UUID id,
         @NotNull
         @Size(min = 10, max = 100)
