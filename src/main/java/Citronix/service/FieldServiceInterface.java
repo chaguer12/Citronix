@@ -10,7 +10,7 @@ import java.util.UUID;
 
 public interface FieldServiceInterface {
     FieldResponseDTO save(FieldRequestDTO field);
-    List<FieldResponseDTO> getFields();
+    List<FieldResponseDTO> getFields(UUID farm_id);
     boolean deleteField(UUID id);
     FieldResponseDTO update(FieldRequestDTO field);
 
