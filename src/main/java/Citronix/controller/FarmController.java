@@ -1,20 +1,14 @@
 package Citronix.controller;
 
-import Citronix.dto.FarmMapper;
-import Citronix.dto.mapper.GenericMapper;
-import Citronix.dto.records.FarmRequestDTO;
-import Citronix.dto.records.FarmResponseDTO;
-import Citronix.exception.EntityNotFoundException;
-import Citronix.model.Farm;
+import Citronix.dto.records.farm.FarmRequestDTO;
+import Citronix.dto.records.farm.FarmResponseDTO;
 import Citronix.service.FarmServiceInterface;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
