@@ -14,6 +14,7 @@ import java.util.UUID;
 @Table(name = "fields")
 public class Field {
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     @NotNull
     private long superficie;
