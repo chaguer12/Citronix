@@ -7,4 +7,5 @@ import org.mapstruct.NullValuePropertyMappingStrategy;
 public interface GenericMapper<Entity,RequestDTO,ResponseDTO> {
      Entity toEntity(RequestDTO reqDTO);
      ResponseDTO toDTO(Entity entity);
+
 }
