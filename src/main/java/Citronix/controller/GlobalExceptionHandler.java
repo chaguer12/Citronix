@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class GlobalExceptionHandler {
     @ExceptionHandler(ValidationException.class)
     public ResponseEntity<ErrorMessage> handleValidationException(ValidationException validationExcep){
-        ErrorMessage errMessage = new ErrorMessage(HttpStatus.BAD_REQUEST.value(), "oops...!");
+        ErrorMessage errMessage = new ErrorMessage(HttpStatus.BAD_REQUEST.value(), "Verify Your inputs!");
         return new ResponseEntity<>(errMessage,HttpStatus.BAD_REQUEST);
     }
 

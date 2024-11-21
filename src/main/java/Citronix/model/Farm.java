@@ -9,6 +9,7 @@ import lombok.Builder;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 @Entity
 @Getter
@@ -28,6 +29,8 @@ public class Farm {
     @NotNull
     @Min(value = 1, message = "(value must be >= 1)")
     private long superficie;
+    @OneToMany(mappedBy = "farm", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Field> fields;
 
     public Farm(){
 

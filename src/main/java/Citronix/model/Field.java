@@ -5,15 +5,18 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.UUID;
 @Getter
+@Setter
 @AllArgsConstructor
 @Entity
 @Builder
 @Table(name = "fields")
 public class Field {
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     @NotNull
     private long superficie;
