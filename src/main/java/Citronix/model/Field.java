@@ -19,7 +19,7 @@ public class Field {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     @NotNull
-    private long superficie;
+    private double superficie;
     @ManyToOne
     @JoinColumn(name = "farm_id")
     private Farm farm;
