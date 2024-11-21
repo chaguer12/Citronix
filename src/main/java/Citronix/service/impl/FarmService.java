@@ -8,6 +8,7 @@ import Citronix.exception.EntityNotFoundException;
 import Citronix.model.Farm;
 import Citronix.repository.FarmRepository;
 import Citronix.service.FarmServiceInterface;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -51,6 +52,7 @@ public class FarmService implements FarmServiceInterface {
     }
 
     @Override
+    @Transactional
     public FarmResponseDTO update(UUID id, FarmUpdateDTO farm) {
         Farm frm = farmRepo.findById(id).orElseThrow(() -> new EntityNotFoundException("not found"));
         frm.setSuperficie(farm.superficie());
