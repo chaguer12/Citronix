@@ -12,7 +12,5 @@ public record TreeRequestDTO(
         LocalDate planted_at,
         @NotNull
         UUID field_id
-
-
 ) {
 }

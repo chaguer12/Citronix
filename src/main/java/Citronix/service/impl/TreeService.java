@@ -35,11 +35,11 @@ public class TreeService implements TreeServiceInterface {
         double density = sup/100;
         double tree_count = treeRepo.countByFieldId(tree.field_id());
         Tree tre = Tree.builder().planted_at(tree.planted_at()).field(field).build();
-        if(tree.planted_at().isBefore(end) || tree.planted_at().isAfter(start) && tree_count < density ){
+        if(tree.planted_at().isBefore(end) && tree.planted_at().isAfter(start) && tree_count < density ){
             treeRepo.save(tre);
 
         }else{
-            throw new ValidationException("planted at is not in the allowed range or max trees has been reached");
+            throw new ValidationException("planted at is not in the allowed range or max trees has been reached or date is not in interval");
         }
         return treeMapper.toDTO(tre);
 
