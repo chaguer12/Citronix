@@ -27,13 +27,13 @@ public class TreeService implements TreeServiceInterface {
     private final TreeMapper treeMapper;
     @Override
     public TreeResponseDTO save(TreeRequestDTO tree) {
-        Field field = fieldRepo.findById(tree.field().getId()).orElseThrow(()-> new EntityNotFoundException("not found"));
+        Field field = fieldRepo.findById(tree.field_id()).orElseThrow(()-> new EntityNotFoundException("not found"));
         LocalDate planted_at = tree.planted_at();
         LocalDate start = LocalDate.of(planted_at.getYear(), 3, 1);
         LocalDate end = LocalDate.of(planted_at.getYear(), 5, 31);
         double sup = field.getSuperficie()*10000;
         double density = sup/100;
-        double tree_count = treeRepo.countByFieldId(tree.field().getId());
+        double tree_count = treeRepo.countByFieldId(tree.field_id());
         Tree tre = Tree.builder().planted_at(tree.planted_at()).field(field).build();
         if(tree.planted_at().isBefore(end) || tree.planted_at().isAfter(start) && tree_count < density ){
             treeRepo.save(tre);

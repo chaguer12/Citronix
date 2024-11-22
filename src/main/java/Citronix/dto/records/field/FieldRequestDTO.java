@@ -8,7 +8,7 @@ import java.util.UUID;
 public record FieldRequestDTO(
         @NotNull
         @Positive
-        long superficie,
+        double superficie,
         @NotNull
         UUID farm_id
 ) {

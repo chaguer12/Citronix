@@ -8,4 +8,5 @@ import org.mapstruct.Mapper;
 
 @Mapper(config = GenericMapper.class)
 public interface TreeMapper extends GenericMapper<Tree, TreeRequestDTO, TreeResponseDTO> {
+
 }

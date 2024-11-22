@@ -5,11 +5,12 @@ import jakarta.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 public record TreeResponseDTO(
-        @DateTimeFormat(pattern = "yyyy-MM-dd")
-        LocalDate planted_at,
         @NotNull
-        Field field
+        UUID id,
+        @DateTimeFormat(pattern = "yyyy-MM-dd")
+        LocalDate planted_at
 ) {
 }

@@ -17,6 +17,6 @@ public record FarmRequestDTO(
 
         @NotNull
         @Min(value = 1, message = "Value must be >= 1")
-        long superficie
+        double superficie
 ) {
 }

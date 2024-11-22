@@ -14,6 +14,6 @@ public record FarmUpdateDTO (
         @Size(max = 255)
         String location,
         @Min(value = 1, message = "Value must be >= 1")
-        long superficie
+        double superficie
 ){
 }

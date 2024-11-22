@@ -21,7 +21,7 @@ public class HarvestDetails {
     @ManyToOne
     @JoinColumn(name = "tree_id")
     private Tree tree;
-    private long quantity;
+    private double quantity;
 
 
 
