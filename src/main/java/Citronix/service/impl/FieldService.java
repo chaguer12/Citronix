@@ -28,10 +28,9 @@ public class FieldService implements FieldServiceInterface {
     @Override
     public FieldResponseDTO save(FieldRequestDTO field) {
         Farm farm = farmRepo.findById(field.farm_id()).orElseThrow(() -> new EntityNotFoundException("entity not found"));
-        long farm_sup = farm.getSuperficie();
-        long fieldMinSup = farm_sup/2;
-        long max = fieldRepo.countByFarmId(farm.getId());
-        System.out.println(max + "<- here");
+        double farm_sup = farm.getSuperficie();
+        double fieldMinSup = farm_sup/2;
+        double max = fieldRepo.countByFarmId(farm.getId());
         Field fld = Field.builder().superficie(field.superficie()).farm(farm).build();
         if(fieldMinSup >= fld.getSuperficie() && max <10){
             fieldRepo.save(fld);
