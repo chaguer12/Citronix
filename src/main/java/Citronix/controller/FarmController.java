@@ -37,7 +37,7 @@ public class FarmController {
         return ResponseEntity.status(HttpStatus.OK).body("deleted successfully!");
     }
 
-    @PatchMapping("/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<FarmResponseDTO> updateFarm(@PathVariable String id, @Valid @RequestBody FarmUpdateDTO farm){
         FarmResponseDTO responseDTO = farmService.update(UUID.fromString(id),farm);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(responseDTO);

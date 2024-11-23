@@ -2,6 +2,7 @@ package Citronix.controller;
 
 import Citronix.dto.records.tree.TreeRequestDTO;
 import Citronix.dto.records.tree.TreeResponseDTO;
+import Citronix.dto.records.tree.TreeUpdateDTO;
 import Citronix.model.Tree;
 import Citronix.service.TreeServiceInterface;
 import jakarta.validation.Valid;
@@ -35,5 +36,11 @@ public class TreeController {
     public ResponseEntity<String> deleteTree(@PathVariable String id){
         treeService.deleteTree(UUID.fromString(id));
         return ResponseEntity.status(HttpStatus.ACCEPTED).body("deleted successfully!");
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<> updateTree(@PathVariable String id, @Valid @RequestBody TreeUpdateDTO treeDTO){
+        TreeResponseDTO response = treeService.update(UUID.fromString(id),treeDTO);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(response);
     }
 }
