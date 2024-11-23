@@ -3,10 +3,12 @@ package Citronix.service.impl;
 import Citronix.dto.FarmMapper;
 import Citronix.dto.records.farm.FarmRequestDTO;
 import Citronix.dto.records.farm.FarmResponseDTO;
+import Citronix.dto.records.farm.FarmUpdateDTO;
 import Citronix.exception.EntityNotFoundException;
 import Citronix.model.Farm;
 import Citronix.repository.FarmRepository;
 import Citronix.service.FarmServiceInterface;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -50,8 +52,12 @@ public class FarmService implements FarmServiceInterface {
     }
 
     @Override
-    public FarmResponseDTO update(FarmRequestDTO farm) {
-        Farm frm = Farm.builder().name(farm.name()).location(farm.location()).superficie(farm.superficie()).build();
+    @Transactional
+    public FarmResponseDTO update(UUID id, FarmUpdateDTO farm) {
+        Farm frm = farmRepo.findById(id).orElseThrow(() -> new EntityNotFoundException("not found"));
+        frm.setSuperficie(farm.superficie());
+        frm.setName(farm.name());
+        frm.setLocation(farm.location());
         farmRepo.save(frm);
         return farmMapper.toDTO(frm);
     }

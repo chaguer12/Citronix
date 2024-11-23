@@ -9,7 +9,7 @@ public record FieldResponseDTO(
         @NotNull
         UUID id,
         @NotNull
-        long superficie
+        double superficie
 ) {
 
 }

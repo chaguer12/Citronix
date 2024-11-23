@@ -2,6 +2,7 @@ package Citronix.controller;
 
 import Citronix.dto.records.farm.FarmRequestDTO;
 import Citronix.dto.records.farm.FarmResponseDTO;
+import Citronix.dto.records.farm.FarmUpdateDTO;
 import Citronix.service.FarmServiceInterface;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -34,6 +35,12 @@ public class FarmController {
     public ResponseEntity<String> deleteFarm(@PathVariable String id){
         farmService.deleteFarm(UUID.fromString(id));
         return ResponseEntity.status(HttpStatus.OK).body("deleted successfully!");
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<FarmResponseDTO> updateFarm(@PathVariable String id, @Valid @RequestBody FarmUpdateDTO farm){
+        FarmResponseDTO responseDTO = farmService.update(UUID.fromString(id),farm);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(responseDTO);
     }
 
 

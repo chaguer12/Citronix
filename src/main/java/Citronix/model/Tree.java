@@ -15,9 +15,9 @@ import java.util.UUID;
 @Table(name = "trees")
 public class Tree {
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-    @NotNull
-    private LocalDate planted;
+    private LocalDate planted_at;
     @ManyToOne
     @JoinColumn(name = "field_id")
     private Field field;
