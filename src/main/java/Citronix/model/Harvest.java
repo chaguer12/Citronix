@@ -1,5 +1,6 @@
 package Citronix.model;
 
+import Citronix.model.enums.Season;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -26,6 +27,12 @@ public class Harvest {
     @ManyToOne
     @JoinColumn(name = "details_id")
     private HarvestDetails details;
+    @NotNull
+    private Season season;
+    @ManyToOne
+    @JoinColumn(name = "field_id")
+    @NotNull
+    private Field field;
 
 
     public Harvest(){

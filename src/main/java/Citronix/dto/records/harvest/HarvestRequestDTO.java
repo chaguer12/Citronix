@@ -1,4 +1,9 @@
 package Citronix.dto.records.harvest;
 
-public record HarvestRequestDTO() {
+import java.time.LocalDate;
+
+public record HarvestRequestDTO(
+        LocalDate created_at,
+
+) {
 }
