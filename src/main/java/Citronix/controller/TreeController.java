@@ -39,7 +39,7 @@ public class TreeController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<> updateTree(@PathVariable String id, @Valid @RequestBody TreeUpdateDTO treeDTO){
+    public ResponseEntity<TreeResponseDTO> updateTree(@PathVariable String id, @Valid @RequestBody TreeUpdateDTO treeDTO){
         TreeResponseDTO response = treeService.update(UUID.fromString(id),treeDTO);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(response);
     }
