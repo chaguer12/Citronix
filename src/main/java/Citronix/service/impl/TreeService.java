@@ -11,7 +11,6 @@ import Citronix.model.Tree;
 import Citronix.repository.FieldRepository;
 import Citronix.repository.TreeRepository;
 import Citronix.service.TreeServiceInterface;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -47,13 +46,19 @@ public class TreeService implements TreeServiceInterface {
     }
 
     @Override
-    public List<TreeResponseDTO> getTrees(UUID tree_id) {
-        return List.of();
+    public List<TreeResponseDTO> getTrees(UUID field_id) {
+        List<Tree> response = treeRepo.getTreesByFieldId(field_id);
+        return response.stream().map(treeMapper::toDTO).toList();
     }
 
     @Override
     public boolean deleteTree(UUID id) {
-        return false;
+        if(treeRepo.existsById(id)){
+            treeRepo.deleteById(id);
+            return true;
+        }else{
+            throw new EntityNotFoundException("farm not found with id" + id);
+        }
     }
 
     @Override
