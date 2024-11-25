@@ -12,4 +12,5 @@ import java.util.UUID;
 public interface FieldRepository extends JpaRepository<Field, UUID> {
     double countByFarmId(UUID id);
     List<Field> findByFarmId(UUID farmId);
+
 }

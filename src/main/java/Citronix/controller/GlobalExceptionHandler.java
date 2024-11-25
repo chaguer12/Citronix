@@ -1,6 +1,7 @@
 package Citronix.controller;
 
 import Citronix.exception.ErrorMessage;
+import Citronix.exception.HarvestMadeBefore;
 import Citronix.exception.ValidationException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
@@ -23,8 +24,13 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorMessage,HttpStatus.INTERNAL_SERVER_ERROR);
     }
     @ExceptionHandler(EntityNotFoundException.class)
-    public ResponseEntity<ErrorMessage> handleGenralException(EntityNotFoundException excep){
+    public ResponseEntity<ErrorMessage> handleEntityException(EntityNotFoundException excep){
         ErrorMessage errorMessage = new ErrorMessage(HttpStatus.BAD_REQUEST.value(),"Record not found: " + excep.getMessage());
+        return new ResponseEntity<>(errorMessage,HttpStatus.BAD_REQUEST);
+    }
+    @ExceptionHandler(HarvestMadeBefore.class)
+    public ResponseEntity<ErrorMessage> handleHarvestException(HarvestMadeBefore excep){
+        ErrorMessage errorMessage = new ErrorMessage(HttpStatus.BAD_REQUEST.value(),"we're sorry try in another season");
         return new ResponseEntity<>(errorMessage,HttpStatus.BAD_REQUEST);
     }
 }

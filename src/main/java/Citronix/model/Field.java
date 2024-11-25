@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.UUID;
 @Getter
 @Setter
@@ -23,6 +24,8 @@ public class Field {
     @ManyToOne
     @JoinColumn(name = "farm_id")
     private Farm farm;
+    @OneToMany(mappedBy = "field", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Harvest> harvests;
 
     public Field(){
 
