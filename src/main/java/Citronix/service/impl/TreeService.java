@@ -11,6 +11,7 @@ import Citronix.model.Tree;
 import Citronix.repository.FieldRepository;
 import Citronix.repository.TreeRepository;
 import Citronix.service.TreeServiceInterface;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -62,6 +63,7 @@ public class TreeService implements TreeServiceInterface {
     }
 
     @Override
+    @Transactional
     public TreeResponseDTO update(UUID id, TreeUpdateDTO tree) {
         return null;
     }

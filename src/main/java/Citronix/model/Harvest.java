@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -23,16 +24,14 @@ public class Harvest {
     private UUID id;
     private LocalDate created_at;
     @NotNull
-    private long quantity;
-    @ManyToOne
-    @JoinColumn(name = "details_id")
-    private HarvestDetails details;
+    private double quantity;
     @NotNull
     private Season season;
     @ManyToOne
     @JoinColumn(name = "field_id")
     @NotNull
     private Field field;
+
 
 
     public Harvest(){

@@ -10,7 +10,6 @@ import Citronix.model.Farm;
 import Citronix.model.Field;
 import Citronix.repository.FarmRepository;
 import Citronix.repository.FieldRepository;
-import Citronix.service.FarmServiceInterface;
 import Citronix.service.FieldServiceInterface;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;

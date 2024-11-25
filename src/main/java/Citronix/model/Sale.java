@@ -7,28 +7,25 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.UUID;
-
 @Getter
 @Setter
 @Builder
-@Entity
-@Table
 @AllArgsConstructor
-public class HarvestDetails {
+@Entity
+@Table(name = "sales")
+public class Sale {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-    @ManyToOne
-    @JoinColumn(name = "harvest_id")
+    private double qty;
+    private double price;
+    private String client_name;
+    @OneToOne
+    @JoinColumn(name = "harvest_id",referencedColumnName = "id")
     private Harvest harvest;
-    @ManyToOne
-    @JoinColumn(name = "tree_id")
-    private Tree tree;
-    private double quantity;
 
-
-
-    public HarvestDetails(){
+    public Sale(){
 
     }
+
 }
