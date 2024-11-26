@@ -8,10 +8,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
@@ -24,5 +24,16 @@ public class SaleController {
     public ResponseEntity<SaleResponseDTO> saveSale(@Valid @RequestBody SaleRequestDTO saleReq){
         SaleResponseDTO response =saleService.save(saleReq);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<SaleResponseDTO>> getSales(){
+        List<SaleResponseDTO> response = saleService.getSales();
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(response);
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> updateSale(@PathVariable String id){
+        saleService.delete(UUID.fromString(id));
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body("sale deleted successfully");
     }
 }

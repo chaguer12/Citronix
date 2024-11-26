@@ -13,6 +13,9 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.UUID;
+
 @Service
 @RequiredArgsConstructor
 public class SaleService implements SaleServiceInterface {
@@ -32,5 +35,21 @@ public class SaleService implements SaleServiceInterface {
                 .harvest(harvest).build();
         saleRepo.save(new_sale);
         return saleMapper.toDTO(new_sale);
+    }
+
+    @Override
+    public List<SaleResponseDTO> getSales() {
+        List<Sale> sales = saleRepo.findAll();
+        return sales.stream().map(saleMapper::toDTO).toList();
+    }
+
+    @Override
+    public boolean delete(UUID id) {
+        if(saleRepo.existsById(id)){
+            saleRepo.deleteById(id);
+            return true;
+        }else {
+            throw new EntityNotFoundException("not found");
+        }
     }
 }
