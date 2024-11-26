@@ -89,6 +89,7 @@ public class HarvestService implements HarvestServiceInterface {
 
     @Override
     public HarvestResponseDTO update(UUID id, HarvestUpdateDTO harvest) {
+        Harvest hrvst = harvestRepo.findById(id).orElseThrow(()-> new EntityNotFoundException("not found "));
         return null;
     }
 
