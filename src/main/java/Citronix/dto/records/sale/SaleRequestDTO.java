@@ -6,8 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import java.util.UUID;
 
 public record SaleRequestDTO(
-        @NotNull
-        double qty,
+
         @NotNull
         double price,
         @NotBlank

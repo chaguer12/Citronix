@@ -73,12 +73,18 @@ public class HarvestService implements HarvestServiceInterface {
 
     @Override
     public List<HarvestResponseDTO> getHarvests(UUID field_id) {
-        return List.of();
+        List<Harvest> harvests = harvestRepo.findByFieldId(field_id);
+        return harvests.stream().map(harvestMapper::toDTO).toList();
     }
 
     @Override
     public boolean deleteHarvest(UUID id) {
-        return false;
+        if(harvestRepo.existsById(id)){
+            harvestRepo.deleteById(id);
+            return true;
+        }else{
+            throw new EntityNotFoundException("not found");
+        }
     }
 
     @Override
