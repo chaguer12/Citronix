@@ -2,7 +2,9 @@ package Citronix.controller;
 
 import Citronix.dto.records.farm.FarmRequestDTO;
 import Citronix.dto.records.farm.FarmResponseDTO;
+import Citronix.dto.records.farm.FarmSearchDTO;
 import Citronix.dto.records.farm.FarmUpdateDTO;
+import Citronix.model.Farm;
 import Citronix.service.FarmServiceInterface;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -41,6 +43,13 @@ public class FarmController {
     public ResponseEntity<FarmResponseDTO> updateFarm(@PathVariable String id, @Valid @RequestBody FarmUpdateDTO farm){
         FarmResponseDTO responseDTO = farmService.update(UUID.fromString(id),farm);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(responseDTO);
+    }
+
+    @PostMapping("/search")
+    public ResponseEntity<List<FarmResponseDTO>> searchFarmsByName(@RequestBody FarmSearchDTO farm){
+        List<FarmResponseDTO> response =   farmService.searchFarms(farm);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(response);
+
     }
 
 

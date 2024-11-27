@@ -3,6 +3,7 @@ package Citronix.service.impl;
 import Citronix.dto.FarmMapper;
 import Citronix.dto.records.farm.FarmRequestDTO;
 import Citronix.dto.records.farm.FarmResponseDTO;
+import Citronix.dto.records.farm.FarmSearchDTO;
 import Citronix.dto.records.farm.FarmUpdateDTO;
 import Citronix.exception.EntityNotFoundException;
 import Citronix.model.Farm;
@@ -60,5 +61,10 @@ public class FarmService implements FarmServiceInterface {
         frm.setLocation(farm.location());
         farmRepo.save(frm);
         return farmMapper.toDTO(frm);
+    }
+    @Override
+    public List<FarmResponseDTO> searchFarms(FarmSearchDTO criteria) {
+        List<Farm> farms = farmRepo.searchFarms(criteria);
+        return farms.stream().map(farmMapper::toDTO).toList();
     }
 }

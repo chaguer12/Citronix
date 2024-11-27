@@ -4,6 +4,7 @@ import Citronix.dto.HarvestMapper;
 import Citronix.dto.records.harvest.HarvestRequestDTO;
 import Citronix.dto.records.harvest.HarvestResponseDTO;
 import Citronix.exception.EntityNotFoundException;
+import Citronix.exception.HarvestMadeBefore;
 import Citronix.model.Field;
 import Citronix.model.Harvest;
 import Citronix.model.Tree;
@@ -108,6 +109,28 @@ class HarvestServiceTest {
         verify(fieldRepository).findById(fieldId);
         verifyNoInteractions(treeRepository, harvestRepo, harvestDetRepo);
     }
+
+    @Test
+    void testSave_HarvestMadeBefore() {
+        UUID fieldId = UUID.randomUUID();
+        LocalDate createdAt = LocalDate.of(2024, 11, 1);
+        HarvestRequestDTO requestDTO = new HarvestRequestDTO( createdAt,fieldId);
+        Field field = new Field();
+        field.setId(fieldId);
+
+        when(fieldRepository.findById(fieldId)).thenReturn(Optional.of(field));
+        when(harvestRepo.countByFieldId(fieldId)).thenReturn(4.0);
+
+        HarvestMadeBefore exception = assertThrows(HarvestMadeBefore.class, () -> {
+            harvestService.save(requestDTO);
+        });
+
+        assertEquals("harvest made before", exception.getMessage());
+        verify(fieldRepository).findById(fieldId);
+        verify(harvestRepo).countByFieldId(fieldId);
+
+    }
+
 
     @Test
     void getHarvestsTest() {
